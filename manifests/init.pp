@@ -25,7 +25,7 @@ define pf::deploy_config( $source ){
 
 	file { 'pf_config':
 		path => '/etc/pf.conf',
-		owner => 'root',
+		owner => root,
 		group => 0,
 		mode => 600,
 		source => "puppet://$server/pf/${source}",
