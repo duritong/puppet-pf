@@ -11,7 +11,7 @@ class pf {
 	}
 	
 	line { "pfconfig_loc_entry":
-		file  "/etc/rc.conf.local",
+		file => "/etc/rc.conf.local",
 		line => 'pf_rules=/etc/pf.conf',
 	}
 
