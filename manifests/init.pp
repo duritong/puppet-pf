@@ -38,7 +38,7 @@ define pf::deploy_config( $source ){
 	}
 
 	exec { "pf_load":
-		command => '/sbin/pfctl -f /etc/pf.conf'
+		command => '/sbin/pfctl -f /etc/pf.conf',
 		refreshonly => true,
 		require => Exec[pf_test],
 	}
