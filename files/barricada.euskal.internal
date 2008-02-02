@@ -57,6 +57,7 @@ HostDonostia = "192.168.1.11"
 HostGasteiz="192.168.1.190"
 HostBolivia="192.168.1.31"
 HostImmerda1="192.168.1.80"
+HostOtrs="192.168.1.81"
 NtpDmzHosts="{10.0.0.2 10.0.0.3}"
 
 PuppetHosts="{ 212.103.72.224/27 195.141.111.121 81.62.11.158 }"
@@ -130,6 +131,7 @@ nat on $Ext from $HostHome to any -> $ExtPublicIp3
 nat on $Ext from $HostRfd to any -> $ExtPublicIp3 
 nat on $Ext from $HostIruna to any -> $ExtPublicIp3 
 nat on $Ext from $HostIndyCHTest to any -> $ExtPublicIp3 
+nat on $Ext from $HostOtrs to any -> $ExtPublicIp3 
 nat on $Ext from $HostImmerda1 to any -> $ExtPublicIp4 
 nat on $Ext from $HostDonostia to any -> $ExtPublicIp5 
 nat on $Ext from $DmzNet to any -> $ExtPublicIp2 
