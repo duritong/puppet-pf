@@ -33,7 +33,6 @@ SSHImmerda1 = "{4444}"
 SSHDonostia = "{65210}"
 HTTPrfd = "{www,https}"
 Dns="{domain}"
-MLDONKEYiruna = "{4662,4665:4666,6881:6889,12157,13489,6969}" 
 DonkeyGasteiz = "{4662, 4672}"
 FTP="{ftp,49999 >< 50201}"
 IMs="{6890:6900}"
@@ -42,7 +41,7 @@ NTP="{ntp}"
 ssh_ports="{ssh,2222,3333,4444,65200:65299}"
 im_ports="{5222,5223,5269}"
 
-bt_ports="{6881:6889}"
+bt_ports="{6946,6881:6889}"
 
 puppet_port="{8140}"
 
