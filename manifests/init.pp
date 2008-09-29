@@ -17,7 +17,6 @@ class pf {
 
 	package { 'pftop':
 		ensure => 'present',
-		source => 'ftp://mirror.switch.ch/pub/OpenBSD/4.2/packages/i386/pftop-0.6.tgz',
 	}
 }
 
