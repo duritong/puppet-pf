@@ -45,6 +45,6 @@ class pf {
 	}
 
 	exec { "pf_activate":
-		command => 'pfctl -s all | grep -q "Status: Enabled" || /sbin/pfctl -e',
+		command => '/sbin/pfctl -s all | /usr/bin/grep -q "Status: Enabled" || /sbin/pfctl -e',
 	}
 }
