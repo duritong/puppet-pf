@@ -30,7 +30,7 @@ class pf {
 		            "puppet://$server/files/pf/${pf_config_class}/pf.conf",
 		            "puppet://$server/files/pf/pf.conf",
                     "puppet://$server/pf/pf.conf" ],
-		notify => Exec[pf_activate],
+		notify => Exec[pf_test],
 	}
 
 	exec { "pf_test":
@@ -47,7 +47,6 @@ class pf {
 	exec { "pf_activate":
 		command => '/sbin/pfctl -e',
         unless => 'pfctl -s all | grep -q "Status: Enabled"',
-		refreshonly => true,
 		require => Exec[pf_load],
 	}
 }
