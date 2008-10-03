@@ -45,8 +45,6 @@ class pf {
 	}
 
 	exec { "pf_activate":
-		command => '/sbin/pfctl -e',
-        unless => 'pfctl -s all | grep -q "Status: Enabled"',
-		require => Exec[pf_load],
+		command => 'pfctl -s all | grep -q "Status: Enabled" || /sbin/pfctl -e',
 	}
 }
