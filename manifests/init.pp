@@ -2,7 +2,9 @@
 # Copyright (C) 2007 admin@immerda.ch
 #
 
-#modules_dir { "pf": }
+# $pf_config_class:
+#  - define this to use a specific class folder
+#    to deploy the config
 
 class pf {
 	line { "startpf_entry":
@@ -18,16 +20,16 @@ class pf {
 	package { 'pftop':
 		ensure => 'present',
 	}
-}
-
-define pf::deploy_config( $source ){
 
 	file { 'pf_config':
 		path => '/etc/pf.conf',
 		owner => root,
 		group => 0,
 		mode => 600,
-		source => "puppet://$server/pf/${source}",
+		source => [ "puppet://$server/files/pf/${fqdn}/pf.conf",
+		            "puppet://$server/files/pf/${pf_config_class}/pf.conf",
+		            "puppet://$server/files/pf/pf.conf",
+                    "puppet://$server/pf/pf.conf" ],
 		notify => Exec[pf_activate],
 	}
 
