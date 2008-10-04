@@ -48,4 +48,8 @@ class pf {
 		command => '/sbin/pfctl -e',
         unless => '/sbin/pfctl -s all | /usr/bin/grep -q "Status: Enabled"',
 	}
+    
+    if $use_munin {
+        include pf::munin
+    }
 }
