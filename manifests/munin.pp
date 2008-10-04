@@ -14,7 +14,7 @@ class pf::munin {
         config => 'user root',
     }
     munin::remoteplugin{'pf_searches':
-        source => "puppet://$server/pf/munin/pf_searches"
+        source => "puppet://$server/pf/munin/pf_searches",
         config => 'user root',
     }
     munin::remoteplugin{'pf_states':
