@@ -11,6 +11,8 @@
 # - banned: user is removed and banned, message 
 #   $ban_message (define parameter) is
 #   displayed.
+# Please note: the appropriate pf-rules you have to
+# add one your own!
 define pf::authpf_user(
     $source = 'absent',
     $ensure = 'present',
