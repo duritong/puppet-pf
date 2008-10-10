@@ -33,12 +33,12 @@ define pf::authpf_user(
         owner => root, group => 0, mode => 0750;
     }
 
-    file{"/etc/authpf/users/${name}/autpf.rules":
+    file{"/etc/authpf/users/${name}/authpf.rules":
         source => $source ? {
             'absent' => [ 
                         "puppet://$server/files/pf/authpf/users/${fqdn}/${name}",
-                        "puppet://$server/files/pf/autpf/users/${pf_config_class}/${name}",    
-                        "puppet://$server/files/pf/autpf/users/${name}"    
+                        "puppet://$server/files/pf/authpf/users/${pf_config_class}/${name}",    
+                        "puppet://$server/files/pf/authpf/users/${name}"    
             ],
             default => "puppet://$server/${source}",
         },
