@@ -30,7 +30,7 @@ define pf::authpf_user(
             'present' => directory,
             default => absent,
         },
-        owner => ${name}, group => 0, mode => 0750;
+        owner => $name, group => 0, mode => 0750;
     }
 
     file{"/etc/authpf/users/${name}/authpf.rules":
@@ -43,7 +43,7 @@ define pf::authpf_user(
             default => "puppet://$server/${source}",
         },
         ensure => $ensure,
-        owner => ${name}, group => 0, mode => 0640;
+        owner => $name, group => 0, mode => 0640;
     }
 
     line { "manage_${$name}_in_authpf.allow":
@@ -56,7 +56,7 @@ define pf::authpf_user(
         'banned': {
             file{"/etc/authpf/banned/${name}":
                 content => $ban_message,
-                owner => ${name}, group => 0, mode => 0640;
+                owner => $name, group => 0, mode => 0640;
             }
         }
     }
