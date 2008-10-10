@@ -20,17 +20,17 @@ class pf::authpf {
         ensure => directory,
         recurse => true,
         purge => true,
-        owner => root, group => 0, mode => 0640;
+        owner => root, group => 0, mode => 0644;
     }
 
     file{ [ '/etc/authpf/users', '/etc/authpf/banned/' ]:
         ensure => directory,
-        owner => root, group => 0, mode => 0750;
+        owner => root, group => 0, mode => 0755;
     }
 
     file{ [ '/etc/authpf/authpf.allow', '/etc/authpf/authpf.conf']:
         ensure => present,
-        owner => root, group => 0, mode => 0640;
+        owner => root, group => 0, mode => 0644;
     }
 
     file{'/etc/authpf/authpf.problem':
@@ -38,7 +38,7 @@ class pf::authpf {
                 '' => 'Sorry, some bad things are going on... Please look after me!',
                 default => $authpf_auth_msg,
         },
-        owner => root, group => 0, mode => 0640;
+        owner => root, group => 0, mode => 0644;
     }
         
     file{'/etc/authpf/authpf.message':
@@ -49,7 +49,7 @@ Don't forget to document your changes! ;)
 Happy hacking!\n",
                 default => $authpf_auth_msg,
         },
-        owner => root, group => 0, mode => 0640;
+        owner => root, group => 0, mode => 0644;
     }
         
 }
