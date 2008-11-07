@@ -32,18 +32,13 @@ class pf {
 		            "puppet://$server/files/pf/${pf_config_class}/pf.conf",
 		            "puppet://$server/files/pf/pf.conf",
                     "puppet://$server/pf/pf.conf" ],
-		notify => Exec[pf_test],
-	}
-
-	exec { "pf_test":
-		command => '/sbin/pfctl -nf /etc/pf.conf',
-		refreshonly => true,
+		notify => Exec[pf_load],
 	}
 
 	exec { "pf_load":
+        onlyif => '/sbin/pfctl -nf /etc/pf.conf',
 		command => '/sbin/pfctl -f /etc/pf.conf',
 		refreshonly => true,
-		require => Exec[pf_test],
 	}
 
 	exec { "pf_activate":
