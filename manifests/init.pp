@@ -31,7 +31,7 @@ class pf {
 		source => [ "puppet://$server/files/pf/${fqdn}/pf.conf",
 		            "puppet://$server/files/pf/${pf_config_class}/pf.conf",
 		            "puppet://$server/files/pf/pf.conf",
-                    "puppet://$server/pf/pf.conf" ],
+                    "puppet://$server/modules/pf/pf.conf" ],
 		notify => Exec[pf_load],
 	}
 
