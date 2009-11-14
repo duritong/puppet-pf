@@ -6,8 +6,6 @@
 #  - define this to use a specific class folder
 #    to deploy the config
 
-import 'defines.pp'
-
 class pf {
 	line { "startpf_entry":
 		file => "/etc/rc.conf.local",

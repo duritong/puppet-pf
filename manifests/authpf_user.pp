@@ -1,5 +1,3 @@
-# manifests/defines.pp
-
 # use this to deploy settings for 
 # an authpf user
 # if authpf isn't yet fully configured 
