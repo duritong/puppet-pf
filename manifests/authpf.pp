@@ -14,7 +14,7 @@ class pf::authpf {
 
     include pf
 
-    file{'/etc/authpf/':
+    file{'/etc/authpf':
         source => "puppet://$server/modules/common/empty",
         ignore => '\.ignore',
         ensure => directory,
@@ -23,7 +23,7 @@ class pf::authpf {
         owner => root, group => 0, mode => 0644;
     }
 
-    file{ [ '/etc/authpf/users', '/etc/authpf/banned/' ]:
+    file{ [ '/etc/authpf/users', '/etc/authpf/banned' ]:
         ensure => directory,
         owner => root, group => 0, mode => 0755;
     }

@@ -36,9 +36,9 @@ define pf::authpf_user(
     file{"/etc/authpf/users/${name}/authpf.rules":
         source => $source ? {
             'absent' => [ 
-                        "puppet://$server/files/pf/authpf/users/${fqdn}/${name}",
-                        "puppet://$server/files/pf/authpf/users/${pf_config_class}/${name}",    
-                        "puppet://$server/files/pf/authpf/users/${name}"    
+                        "puppet://$server/modules/site-pf/authpf/users/${fqdn}/${name}",
+                        "puppet://$server/modules/site-pf/authpf/users/${pf_config_class}/${name}",    
+                        "puppet://$server/modules/site-pf/authpf/users/${name}"    
             ],
             default => "puppet://$server/${source}",
         },
