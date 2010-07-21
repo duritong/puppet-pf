@@ -16,7 +16,7 @@ class pf::authpf {
 
     file{'/etc/authpf':
         source => "puppet://$server/modules/common/empty",
-        ignore => '.ignore',
+        ignore => '\.ignore',
         ensure => directory,
         recurse => true,
         purge => true,
