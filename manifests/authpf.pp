@@ -15,7 +15,7 @@ class pf::authpf {
     include pf
 
     file{'/etc/authpf':
-        source => "puppet://$server/modules/common/empty",
+        source => "puppet:///modules/common/empty",
         ignore => '.ignore',
         ensure => directory,
         recurse => true,

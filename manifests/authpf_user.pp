@@ -34,11 +34,11 @@ define pf::authpf_user(
     file{"/etc/authpf/users/${name}/authpf.rules":
         source => $source ? {
             'absent' => [ 
-                        "puppet://$server/modules/site-pf/authpf/users/${fqdn}/${name}",
-                        "puppet://$server/modules/site-pf/authpf/users/${pf_config_class}/${name}",    
-                        "puppet://$server/modules/site-pf/authpf/users/${name}"    
+                        "puppet:///modules/site-pf/authpf/users/${fqdn}/${name}",
+                        "puppet:///modules/site-pf/authpf/users/${pf_config_class}/${name}",    
+                        "puppet:///modules/site-pf/authpf/users/${name}"    
             ],
-            default => "puppet://$server/${source}",
+            default => "puppet:///${source}",
         },
         ensure => $ensure,
         owner => $name, group => 0, mode => 0640;

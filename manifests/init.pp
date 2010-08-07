@@ -26,10 +26,10 @@ class pf {
 		owner => root,
 		group => 0,
 		mode => 600,
-		source => [ "puppet://$server/modules/site-pf/${fqdn}/pf.conf",
-		            "puppet://$server/modules/site-pf/${pf_config_class}/pf.conf",
-		            "puppet://$server/modules/site-pf/pf.conf",
-                    "puppet://$server/modules/pf/pf.conf" ],
+		source => [ "puppet:///modules/site-pf/${fqdn}/pf.conf",
+		            "puppet:///modules/site-pf/${pf_config_class}/pf.conf",
+		            "puppet:///modules/site-pf/pf.conf",
+                    "puppet:///modules/pf/pf.conf" ],
 		notify => Exec[pf_load],
 	}
 
