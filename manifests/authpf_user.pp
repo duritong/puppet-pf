@@ -1,12 +1,12 @@
-# use this to deploy settings for 
+# use this to deploy settings for
 # an authpf user
-# if authpf isn't yet fully configured 
+# if authpf isn't yet fully configured
 # puppet will automatically configure
 # it for you.
 # you can ensure a user to be:
 # - present: access is allowed
 # - absent: allow info is removed
-# - banned: user is removed and banned, message 
+# - banned: user is removed and banned, message
 #   $ban_message (define parameter) is
 #   displayed.
 # Please note: the appropriate pf-rules you have to
@@ -14,7 +14,7 @@
 define pf::authpf_user(
     $source = 'absent',
     $ensure = 'present',
-    $ban_message = 'You have been banned from this system! For further infos, please ask the administration team!' 
+    $ban_message = 'You have been banned from this system! For further infos, please ask the administration team!'
 ){
     include pf::authpf
 
@@ -33,10 +33,10 @@ define pf::authpf_user(
 
     file{"/etc/authpf/users/${name}/authpf.rules":
         source => $source ? {
-            'absent' => [ 
-                        "puppet:///modules/site-pf/authpf/users/${fqdn}/${name}",
-                        "puppet:///modules/site-pf/authpf/users/${pf_config_class}/${name}",    
-                        "puppet:///modules/site-pf/authpf/users/${name}"    
+            'absent' => [
+                        "puppet:///modules/site_pf/authpf/users/${::fqdn}/${name}",
+                        "puppet:///modules/site_pf/authpf/users/${pf::pf_config_class}/${name}",
+                        "puppet:///modules/site_pf/authpf/users/${name}"
             ],
             default => "puppet:///${source}",
         },
@@ -44,8 +44,8 @@ define pf::authpf_user(
         owner => $name, group => 0, mode => 0640;
     }
 
-    line { "manage_${$name}_in_authpf.allow":
-        file => '/etc/authpf/authpf.allow',
+    file_line { "manage_${$name}_in_authpf.allow":
+        path => '/etc/authpf/authpf.allow',
         line => "$name",
         ensure => $real_ensure,
     }
