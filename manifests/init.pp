@@ -2,11 +2,12 @@
 # Copyright (C) 2007 admin@immerda.ch
 #
 
-# $pf_config_class:
+# $config_class:
 #  - define this to use a specific class folder
 #    to deploy the config
 class pf (
-  $pf_config_class = hiera('pf_config_class', '')
+  $config_class,
+  $manage_munin = false
 ) {
   file_line {
     'startpf_entry' :
@@ -29,7 +30,7 @@ class pf (
       mode => 600,
       source => [
         "puppet:///modules/site_pf/${::fqdn}/pf.conf",
-        "puppet:///modules/site_pf/${pf::pf_config_class}/pf.conf",
+        "puppet:///modules/site_pf/${config_class}/pf.conf",
         "puppet:///modules/site_pf/pf.conf", "puppet:///modules/pf/pf.conf"
       ],
       notify => Exec[pf_test];
@@ -48,7 +49,7 @@ class pf (
       command => '/sbin/pfctl -e',
       unless => '/sbin/pfctl -s all | /usr/bin/grep -q "Status: Enabled"' ;
   }
-  if hiera('use_munin', false) {
+  if $manage_munin {
     include pf::munin
   }
 }
