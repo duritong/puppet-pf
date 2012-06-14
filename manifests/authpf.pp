@@ -11,35 +11,32 @@
 # - $authpf_msg: sets the message displayed after
 #                authentication
 class pf::authpf(
-  $authpf_msg = hiera('authpf_msg',"You're ready to authenticate on the hosts...
+  $authpf_msg = "You're ready to authenticate on the hosts...
 Don't do anything stupid!
 Don't forget to document your changes! ;)
-Happy hacking!\n"),
-  $authpf_problem_msg = hiera('authpf_problem_msg', 'Sorry, some bad things are going on... Please look after me!')
+Happy hacking!\n",
+  $authpf_problem_msg = 'Sorry, some bad things are going on... Please look after me!'
 ){
+  file{
+    '/etc/authpf':
+      ensure => directory,
+      recurse => true,
+      purge => true,
+      owner => root, group => 0, mode => 0644;
 
-    include pf
+    [ '/etc/authpf/users', '/etc/authpf/banned' ]:
+      ensure => directory,
+      owner => root, group => 0, mode => 0755;
 
-    file{
-      '/etc/authpf':
-        ensure => directory,
-        recurse => true,
-        purge => true,
-        owner => root, group => 0, mode => 0644;
+    [ '/etc/authpf/authpf.allow', '/etc/authpf/authpf.conf']:
+      ensure => present,
+      owner => root, group => 0, mode => 0644;
 
-      [ '/etc/authpf/users', '/etc/authpf/banned' ]:
-        ensure => directory,
-        owner => root, group => 0, mode => 0755;
-
-      [ '/etc/authpf/authpf.allow', '/etc/authpf/authpf.conf']:
-        ensure => present,
-        owner => root, group => 0, mode => 0644;
-
-      '/etc/authpf/authpf.problem':
-        content => $pf::authpf::authpf_problem_msg,
-        owner => root, group => 0, mode => 0644;
-      '/etc/authpf/authpf.message':
-        content => $pf::authpf::authpf_msg,
-        owner => root, group => 0, mode => 0644;
-    }
+    '/etc/authpf/authpf.problem':
+      content => $pf::authpf::authpf_problem_msg,
+      owner => root, group => 0, mode => 0644;
+    '/etc/authpf/authpf.message':
+      content => $pf::authpf::authpf_msg,
+      owner => root, group => 0, mode => 0644;
+  }
 }
