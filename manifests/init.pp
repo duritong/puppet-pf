@@ -6,7 +6,7 @@
 #  - define this to use a specific class folder
 #    to deploy the config
 class pf (
-  $config_class,
+  $config_class = '',
   $manage_munin = false
 ) {
   file_line {
