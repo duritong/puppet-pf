@@ -35,7 +35,7 @@ define pf::authpf_user(
         source => $source ? {
             'absent' => [
                         "puppet:///modules/site_pf/authpf/users/${::fqdn}/${name}",
-                        "puppet:///modules/site_pf/authpf/users/${pf::pf_config_class}/${name}",
+                        "puppet:///modules/site_pf/authpf/users/${pf::config_class}/${name}",
                         "puppet:///modules/site_pf/authpf/users/${name}"
             ],
             default => "puppet:///${source}",
